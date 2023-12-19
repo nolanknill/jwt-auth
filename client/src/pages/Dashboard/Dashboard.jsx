@@ -2,7 +2,7 @@ import "./Dashboard.scss";
 import { useEffect, useState } from "react";
 import axios from "axios";
 
-function Dashboard({ token, goToLogin }) {
+function Dashboard({ token, handleLogout }) {
   const [profile, setProfile] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -21,7 +21,7 @@ function Dashboard({ token, goToLogin }) {
       setIsLoading(false);
       setProfile(userProfile);
     } catch (error) {
-      goToLogin();
+      handleLogout();
     }
   }
 
@@ -39,6 +39,8 @@ function Dashboard({ token, goToLogin }) {
         <p>Phone: {profile.phone}</p>
         <p>Email: {profile.email}</p>
       </section>
+
+      <a href="#" onClick={handleLogout}>Logout</a>
     </main>
   );
 }
